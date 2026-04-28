@@ -28,7 +28,7 @@ The **World/Machine Model** (Michael Jackson, 1995) separates the software syste
 │  [Device Filesystem]  [Text-to-Speech Engine]  [OsmAnd Cloud]       │
 │                                                                     │
 │           ↕ shared phenomena (interface)                            │
-│─────────────────────────────────────────────────────────────────────│
+│ ──────────────────────────────────────────────────────────────────  │
 │                          THE MACHINE                                │
 │                                                                     │
 │  [Map Renderer]  [Routing Engine]  [GPS/Location Manager]           │
@@ -80,9 +80,59 @@ These are the observable events and data flows that cross the World/Machine boun
 
 ---
 
-## 5. Functional Requirements
+## 5. World
 
-### 5.1 Navigation & Routing
+This section describes the real-world environment in which OsmAnd operates — the people, physical systems, infrastructure, and data sources that exist independently of the software and that the software must interact with or respond to.
+
+### 5.1 Users and Their Context
+
+OsmAnd's primary user is a **mobile device user navigating in the physical world** — on foot, by bicycle, by car, or using public transport. Users operate the app in diverse conditions: outdoors with variable GPS signal quality, while driving (limiting screen interaction), in areas without mobile internet coverage, and across a wide range of hardware capabilities from low-end Android devices to high-end smartphones. This context makes offline capability, battery efficiency, and minimal-interaction voice guidance first-class real-world concerns, not just technical preferences.
+
+Users range from casual map browsers to professional field workers (surveyors, emergency services, outdoor enthusiasts). A subset of users actively contributes back to the world through OSM: adding POIs, uploading GPX tracks, and reporting map errors.
+
+### 5.2 The Physical Road Network and Geographic World
+
+OsmAnd operates over a representation of the **real physical world**: roads, paths, buildings, waterways, elevation, and points of interest. This world is inherently imperfect — roads change, businesses open and close, construction alters routes. The map data the app uses is a snapshot of this world, compiled from OpenStreetMap contributions, and is therefore always partially out of date. The app must handle discrepancies gracefully (e.g., re-routing when a road in the data does not match reality).
+
+The physical world also imposes **GPS constraints**: signal accuracy degrades indoors, in urban canyons, and under dense tree cover. The app must tolerate noisy or intermittent location data.
+
+### 5.3 GPS Satellite Infrastructure
+
+The device's location is determined by the **Global Navigation Satellite System (GNSS)** — primarily GPS, with optional GLONASS, Galileo, and BeiDou support depending on device hardware. The satellite system is entirely outside OsmAnd's control. It delivers a stream of position fixes to the device's OS location API, which the app consumes. Fix accuracy typically ranges from 3–15 metres in open sky conditions but may degrade significantly in urban or indoor environments.
+
+### 5.4 OpenStreetMap Ecosystem
+
+OsmAnd's map content is entirely derived from **OpenStreetMap (OSM)** — a global, crowd-sourced geographic database maintained by millions of volunteers. OSM data is exported, processed, and compiled into OsmAnd's binary `.obf` format by the **OsmAnd MapCreator** tool (a separate project). The OSM ecosystem also provides the **OSM API**, through which OsmAnd allows users to contribute edits (notes, POIs, GPX uploads) back to the shared map.
+
+Map data quality varies by region — densely populated areas in Europe and North America have near-complete coverage, while some regions of Central Asia and Central Africa are still being mapped. OsmAnd has no control over data quality; it can only render what OSM provides.
+
+### 5.5 OsmAnd Server Infrastructure
+
+The **OsmAnd map servers** host pre-compiled `.obf` regional map files, which are updated at least monthly and made available for in-app download. The **OsmAnd Live** service provides hourly incremental map diffs for subscribers. **OsmAnd Cloud** provides cross-device synchronisation for user data (favourites, tracks, settings, profiles). These services are external to the application itself; the app must function fully without them when offline.
+
+### 5.6 Device Hardware and OS
+
+OsmAnd runs on **Android** (primary) and **iOS** mobile devices. The relevant hardware environment includes the GPS chip, device filesystem (internal storage and optional external SD card), display (varying resolutions and sizes), compass sensor, and the device speaker/headphone output for voice guidance. The operating system provides location APIs, the TTS engine, filesystem access, and background process management. Battery life is a significant real-world constraint: navigation sessions can last several hours, and the app must minimise power consumption, particularly when the screen is off.
+
+### 5.7 Voice and Audio Environment
+
+Turn-by-turn instructions are delivered to the user through the device's **Text-to-Speech (TTS) engine** (OS-provided) or via pre-recorded audio files bundled with the app. The audio must be comprehensible while the user is driving, cycling, or walking — meaning timing (announced sufficiently in advance) and volume/clarity are real-world concerns that constrain how voice guidance is designed.
+
+### 5.8 Online Tile and Satellite Providers
+
+For users who optionally choose online map overlays, **Bing Maps** (satellite imagery) and various community tile servers (OpenTopoMap, Thunderforest, etc.) serve raster tiles over the internet. These are entirely external and optional; their availability is not guaranteed, and OsmAnd must not depend on them for core functionality.
+
+### 5.9 Telegram (Live Location Sharing)
+
+The **OsmAnd Tracker** plugin integrates with **Telegram** to broadcast the user's real-time GPS location to selected contacts via the Telegram messaging network. This is an optional social/safety feature dependent on Telegram's external infrastructure and the user's Telegram account.
+
+---
+
+## 6. Specifications
+
+### 6.1 Functional Requirements
+
+#### 6.1.1 Navigation & Routing
 
 | ID | Requirement |
 |---|---|
@@ -97,7 +147,7 @@ These are the observable events and data flows that cross the World/Machine boun
 | FR-NAV-09 | The system **shall** support public transport routing (bus, tram, metro, train). |
 | FR-NAV-10 | The system **shall** display speed limit information and warn the user when the limit is exceeded. |
 
-### 5.2 Map Rendering & Viewing
+#### 6.1.2 Map Rendering & Viewing
 
 | ID | Requirement |
 |---|---|
@@ -111,7 +161,7 @@ These are the observable events and data flows that cross the World/Machine boun
 | FR-MAP-08 | The system **shall** display place names in the user's choice of local, English, or phonetic spelling. |
 | FR-MAP-09 | The system **shall** optionally display contour lines and hillshading (paid plugin). |
 
-### 5.3 Search
+#### 6.1.3 Search
 
 | ID | Requirement |
 |---|---|
@@ -121,7 +171,7 @@ These are the observable events and data flows that cross the World/Machine boun
 | FR-SRC-04 | The system **shall** support search along a calculated route. |
 | FR-SRC-05 | The system **shall** support Wikipedia POI lookup (premium feature). |
 
-### 5.4 Map Data Management
+#### 6.1.4 Map Data Management
 
 | ID | Requirement |
 |---|---|
@@ -131,7 +181,7 @@ These are the observable events and data flows that cross the World/Machine boun
 | FR-DATA-04 | The system **shall** allow map files to be stored on external SD card. |
 | FR-DATA-05 | The free version **shall** limit downloads to 16 map files; the paid version has no limit. |
 
-### 5.5 Track Recording & GPX
+#### 6.1.5 Track Recording & GPX
 
 | ID | Requirement |
 |---|---|
@@ -140,7 +190,7 @@ These are the observable events and data flows that cross the World/Machine boun
 | FR-GPX-03 | The system **shall** allow import and export of GPX files. |
 | FR-GPX-04 | The system **shall** allow recorded GPX tracks to be uploaded directly to OSM. |
 
-### 5.6 User Profiles & Settings
+#### 6.1.6 User Profiles & Settings
 
 | ID | Requirement |
 |---|---|
@@ -148,14 +198,14 @@ These are the observable events and data flows that cross the World/Machine boun
 | FR-PRF-02 | The system **shall** allow saving locations as Favourites with custom names and icons. |
 | FR-PRF-03 | The system **shall** allow import/export of all user data (favourites, tracks, settings) for backup and migration. |
 
-### 5.7 OSM Contribution
+#### 6.1.7 OSM Contribution
 
 | ID | Requirement |
 |---|---|
 | FR-OSM-01 | The system **shall** allow users to report map errors as OSM notes. |
 | FR-OSM-02 | The system **shall** allow users to add new POIs and submit them to OSM directly or defer submission for offline use. |
 
-### 5.8 Plugin System
+#### 6.1.8 Plugin System
 
 | ID | Requirement |
 |---|---|
@@ -165,7 +215,7 @@ These are the observable events and data flows that cross the World/Machine boun
 
 ---
 
-## 6. Non-Functional Requirements
+### 6.2 Non-Functional Requirements
 
 | ID | Category | Requirement |
 |---|---|---|
@@ -184,42 +234,7 @@ These are the observable events and data flows that cross the World/Machine boun
 
 ---
 
-## 7. Module Decomposition (High-Level)
-
-The repository is structured into the following top-level modules:
-
-| Module | Language | Role |
-|---|---|---|
-| `OsmAnd/` | Java / Kotlin | Main Android application (UI, Activities, Fragments, Plugins) |
-| `OsmAnd-java/` | Java | Platform-independent core library: routing engine, search, map data parsing, GPX |
-| `OsmAnd-shared/` | Kotlin Multiplatform | Shared logic for Android and iOS (settings, data models) |
-| `OsmAnd-api/` | Java / AIDL | Public API for third-party Android app integration |
-| `OsmAnd-telegram/` | Kotlin | Telegram live location sharing plugin |
-| `plugins/` | — | Optional feature plugins |
-
-Key packages within `OsmAnd-java/`:
-
-- `net.osmand.router` — bidirectional A* routing engine, `routing.xml` configuration
-- `net.osmand.search` — offline address and POI search
-- `net.osmand.data` — domain objects: `LatLon`, `Amenity`, `TransportStop`, `Building`
-- `net.osmand.map` — map tile source abstractions
-- `net.osmand.binary` — `.obf` binary file reader (`BinaryMapIndexReader`)
-- `net.osmand.gpx` — GPX file reading and writing (`GPXFile`, `WptPt`, `TrkSegment`)
-- `net.osmand.render` — vector rendering rule engine (`RenderingRulesStorage`)
-
----
-
-## 8. Constraints and Assumptions
-
-1. Map data originates from **OpenStreetMap** and is compiled into `.obf` format by OsmAnd MapCreator; the application does not parse raw OSM XML directly.
-2. Routing rules are fully data-driven via `routing.xml`; no routing constants are hardcoded.
-3. The application targets **Android as the primary platform**; iOS is a separate codebase sharing the `OsmAnd-shared` module.
-4. **Battery life** is a first-class constraint given navigation use cases on mobile hardware.
-5. **No reliance on proprietary map services** — the system must never require Google Maps, Apple Maps, or any paid tile provider for core functionality.
-
----
-
-## 9. Glossary
+## 7. Glossary
 
 | Term | Definition |
 |---|---|
