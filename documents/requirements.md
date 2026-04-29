@@ -24,16 +24,16 @@ The **World/Machine Model** (Michael Jackson, 1995) separates the software syste
 ┌─────────────────────────────────────────────────────────────────────┐
 │                            THE WORLD                                │
 │                                                                     │
-│  [User]  [GPS Satellites]  [Road Network]  [OSM Servers]            │
-│  [Device Filesystem]  [Text-to-Speech Engine]  [OsmAnd Cloud]       │
+│  [User]  [GPS Satellites]  [Road Network]  [OSM Servers]           │
+│  [Device Filesystem]  [Text-to-Speech Engine]  [OsmAnd Cloud]      │
 │                                                                     │
 │           ↕ shared phenomena (interface)                            │
-│ ──────────────────────────────────────────────────────────────────  │
+│ ─────────────────────────────────────────────────────────────────  │
 │                          THE MACHINE                                │
 │                                                                     │
-│  [Map Renderer]  [Routing Engine]  [GPS/Location Manager]           │
-│  [Search Engine]  [Map Data Manager]  [GPX Tracker]                 │
-│  [Plugin System]  [Settings & Profiles]  [UI Layer]                 │
+│  [Map Renderer]  [Routing Engine]  [GPS/Location Manager]          │
+│  [Search Engine]  [Map Data Manager]  [GPX Tracker]                │
+│  [Plugin System]  [Settings & Profiles]  [UI Layer]                │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -128,7 +128,7 @@ The **OsmAnd Tracker** plugin integrates with **Telegram** to broadcast the user
 
 ---
 
-## 6. Specifications
+## 6. Requirements
 
 ### 6.1 Functional Requirements
 
@@ -137,6 +137,7 @@ The **OsmAnd Tracker** plugin integrates with **Telegram** to broadcast the user
 | ID | Requirement |
 |---|---|
 | FR-NAV-01 | The system **shall** calculate routes between a start and destination point for car, bicycle, and pedestrian profiles. |
+| FR-NAV-11 | The system **shall** perform all core navigation functions (routing, voice guidance, re-routing) without any internet connection. |
 | FR-NAV-02 | The system **shall** calculate routes entirely offline using pre-downloaded `.obf` map data. |
 | FR-NAV-03 | The routing engine **shall** use a bidirectional A* algorithm based on fastest time (distance / (speed × priority) + penalties), configurable via `routing.xml`. |
 | FR-NAV-04 | The system **shall** support intermediate waypoints on a route. |
@@ -152,6 +153,7 @@ The **OsmAnd Tracker** plugin integrates with **Telegram** to broadcast the user
 | ID | Requirement |
 |---|---|
 | FR-MAP-01 | The system **shall** render vector maps from `.obf` binary files entirely on-device. |
+| FR-MAP-10 | The system **shall** render maps and display all POI data without any internet connection. |
 | FR-MAP-02 | The system **shall** display the user's current position and orientation on the map. |
 | FR-MAP-03 | The system **shall** support map rotation by compass direction or direction of motion. |
 | FR-MAP-04 | The system **shall** support customisable rendering styles (default, touring, nautical, ski, etc.) via XML rendering rules. |
@@ -217,24 +219,128 @@ The **OsmAnd Tracker** plugin integrates with **Telegram** to broadcast the user
 
 ### 6.2 Non-Functional Requirements
 
-| ID | Category | Requirement |
-|---|---|---|
-| NFR-01 | **Offline capability** | All core features (routing, rendering, search, POI) shall function without any network connection. |
-| NFR-02 | **Performance – map rendering** | Map frame rendering shall achieve smooth scrolling (≥30 fps) on mid-range Android devices. |
-| NFR-03 | **Performance – routing** | Route calculation for distances up to 200 km shall complete within 10 seconds on a mid-range device. |
-| NFR-04 | **Storage efficiency** | Compact `.obf` binary format shall be used; e.g., all of Japan ≤ 700 MB, road-network-only ≤ 200 MB. |
-| NFR-05 | **Battery efficiency** | The system shall provide a screen-off navigation mode where routing continues via voice guidance only. |
-| NFR-06 | **Platform support** | The system shall support Android 5.0+ and iOS 12+. |
-| NFR-07 | **Internationalisation** | The system shall support 70+ languages for the UI and map label display. |
-| NFR-08 | **Accessibility** | Voice guidance shall be available for all navigation manoeuvres. |
-| NFR-09 | **Openness** | The system shall be licensed under GPLv3; contributor pull requests shall be accepted under MIT license. |
-| NFR-10 | **Data freshness** | Map data shall be updated at least monthly via full re-download; hourly updates available via OsmAnd Live. |
-| NFR-11 | **Privacy** | No user location data shall be transmitted to OsmAnd servers during normal offline operation. |
-| NFR-12 | **Extensibility** | New navigation profiles and rendering styles shall be addable without modifying core application code. |
+Non-functional requirements are constraints that do not directly define what the system does, but define conditions under which it must operate. They are grouped into three categories: **Product** (constraints on the software/hardware itself), **Organisational** (company policies and standards), and **External** (laws, regulations, and third-party obligations).
+
+#### 6.2.1 Product Requirements
+
+Constraints on the product's runtime behaviour, performance, and technical qualities.
+
+| ID | Requirement |
+|---|---|
+| NFR-P01 | Map frame rendering shall achieve smooth scrolling (≥30 fps) on mid-range Android devices (e.g. 2GB RAM, quad-core CPU). |
+| NFR-P02 | Route calculation for distances up to 200 km shall complete within 10 seconds on a mid-range device. |
+| NFR-P03 | The app shall support Android 5.0 (API 21) and above, and iOS 12.0 and above. |
+| NFR-P04 | The app shall consume no more storage than necessary; regional `.obf` map files shall be compact (e.g. all of Germany ≤ 900 MB). |
+| NFR-P05 | Background navigation shall continue when the screen is off, consuming minimal CPU and battery. |
+| NFR-P06 | The app shall support 70+ UI languages and display map labels in local script, English, or phonetic transliteration. |
+| NFR-P07 | New navigation profiles and rendering styles shall be addable without recompiling the application. |
+| NFR-P08 | The app shall remain stable (no crash) when GPS signal is lost or intermittent during an active navigation session. |
+
+#### 6.2.2 Organisational Requirements
+
+Constraints imposed by OsmAnd's development organisation, policies, and standards.
+
+| ID | Requirement |
+|---|---|
+| NFR-O01 | The application source code shall be licensed under the **GNU General Public License v3 (GPLv3)**. |
+| NFR-O02 | All external contributor pull requests shall be accepted under the **MIT License** to allow relicensing. |
+| NFR-O03 | Map data shall be sourced exclusively from **OpenStreetMap** and shall not include proprietary map content. |
+| NFR-O04 | The project shall maintain public issue tracking and accept community contributions via GitHub. |
+| NFR-O05 | Map data updates shall be made available to users at least once per calendar month. |
+
+#### 6.2.3 External Requirements
+
+Constraints arising from external laws, regulations, or third-party platform rules.
+
+| ID | Requirement |
+|---|---|
+| NFR-E01 | No user location data shall be transmitted to OsmAnd servers during normal offline operation, in compliance with applicable data protection regulations (e.g. GDPR). |
+| NFR-E02 | The app shall comply with **Google Play** and **Apple App Store** distribution policies, including privacy disclosure requirements. |
+| NFR-E03 | Any integration with the **OSM API** for user contributions shall comply with the OpenStreetMap Contributor Terms. |
+| NFR-E04 | The **OsmAnd Tracker** plugin shall comply with **Telegram's Bot API Terms of Service** when transmitting location data. |
+| NFR-E05 | Voice guidance audio files shall not infringe third-party copyright; all bundled audio shall be recorded under a compatible open licence. |
 
 ---
 
-## 7. Glossary
+## 7. Specifications
+
+Specifications are technical definitions that link the requirements (§6) to the system. Each specification below elaborates a requirement into a concrete technical constraint — defining algorithms, data formats, protocols, interfaces, or performance thresholds.
+
+### 7.1 Navigation & Routing
+
+| ID | Links to | Specification |
+|---|---|---|
+| SP-NAV-01 | FR-NAV-01 | Route calculation **shall** use a **bidirectional A\* algorithm** operating on a directed weighted graph loaded from the `.obf` road network index. Edge weights **shall** be computed as `distance / (speed × priority) + turn_penalty`, where all parameters are defined in `routing.xml`. |
+| SP-NAV-02 | FR-NAV-02, FR-NAV-11 | The routing engine **shall** operate entirely on locally stored `.obf` files using `BinaryMapIndexReader`. No network call shall be made during route calculation. |
+| SP-NAV-03 | FR-NAV-05 | Voice guidance **shall** be delivered via the Android `TextToSpeech` API or pre-recorded `.ogg` audio files. Manoeuvre announcements **shall** be triggered at distances configurable per profile (default: 2000 m, 500 m, and 50 m before the manoeuvre). |
+| SP-NAV-04 | FR-NAV-07 | Off-route detection **shall** occur when the GPS position deviates more than a configurable threshold (default: 50 m for car, 20 m for pedestrian) from the nearest route segment. Re-routing **shall** complete within 5 seconds of deviation detection on a mid-range device. |
+| SP-NAV-05 | FR-NAV-03 | All routing profiles, road type priorities, speed limits, and avoidance penalties **shall** be defined exclusively in `routing.xml`. No routing constant shall be hardcoded in Java source. |
+
+### 7.2 Map Rendering
+
+| ID | Links to | Specification |
+|---|---|---|
+| SP-MAP-01 | FR-MAP-01, FR-MAP-10 | Vector map rendering **shall** use the native **OsmAnd-core** C++ library via JNI for hardware-accelerated OpenGL ES 2.0 rendering. A Java 2D canvas fallback **shall** be available for devices without OpenGL ES support. |
+| SP-MAP-02 | FR-MAP-04 | Rendering rules **shall** be defined in XML style files parsed by `RenderingRulesStorage`. Style files **shall** specify display conditions per zoom level, object type, and tag combination. Styles **shall** be swappable at runtime without restarting the application. |
+| SP-MAP-03 | FR-MAP-07 | Day/night mode switching **shall** be implemented as a rendering style parameter. Automatic switching **shall** use the device's civil twilight time computed from the current GPS coordinates and date. |
+| SP-MAP-04 | FR-MAP-02 | The user's position marker **shall** be updated on the map within 1 second of each GPS fix. Bearing **shall** be smoothed using a low-pass filter to reduce jitter from noisy GPS headings. |
+
+### 7.3 Map Data Format
+
+| ID | Links to | Specification |
+|---|---|---|
+| SP-DATA-01 | FR-DATA-01 | Map files **shall** use the **OsmAnd Binary Format (`.obf`)**, a compact indexed binary format compiled from OSM data by OsmAnd MapCreator. The application **shall not** parse raw OSM XML or PBF at runtime. |
+| SP-DATA-02 | FR-DATA-01 | An `.obf` file **shall** contain the following indexed sections: road network graph, rendered map objects, address index (city/street/house), POI index, and public transport index. Each section **shall** be spatially indexed for tile-based access. |
+| SP-DATA-03 | FR-DATA-03 | OsmAnd Live differential updates **shall** be delivered as binary diff files applied to the base `.obf` index. Diffs **shall** be available at minimum hourly intervals for active subscribers. |
+| SP-DATA-04 | NFR-P04 | Map data **shall** be loaded using memory-mapped I/O (`FileChannel.map`) to bound RAM usage. Only tiles intersecting the current viewport or routing bounding box **shall** be loaded into memory at any time. |
+
+### 7.4 Search
+
+| ID | Links to | Specification |
+|---|---|---|
+| SP-SRC-01 | FR-SRC-01, FR-SRC-02 | All search queries **shall** be resolved against locally stored `.obf` address and POI indexes via `SearchUICore`. Search **shall** not require a network connection. |
+| SP-SRC-02 | FR-SRC-01 | Address search **shall** follow a hierarchical resolution order: country → region → city → street → house number. Each level **shall** be matched against the address index using prefix and fuzzy matching. |
+| SP-SRC-03 | FR-SRC-04 | Route-along search **shall** restrict POI results to amenities within a configurable corridor width (default: 1000 m) of the active route polyline, evaluated using spatial intersection. |
+
+### 7.5 GPS and Location
+
+| ID | Links to | Specification |
+|---|---|---|
+| SP-LOC-01 | FR-NAV-02, FR-GPX-01 | The app **shall** subscribe to location updates via the **Android `LocationManager` API** (or `FusedLocationProviderClient` where available), requesting updates at a minimum interval of 1 second with a minimum displacement of 1 metre during active navigation or recording. |
+| SP-LOC-02 | FR-GPX-01 | Background track recording **shall** run as an **Android Foreground Service** with a persistent notification, ensuring the process is not killed by the OS during navigation or recording sessions. |
+| SP-LOC-03 | FR-NAV-10 | Speed limit data **shall** be read from the `maxspeed` OSM tag stored in the `.obf` road network index. A speed warning **shall** be triggered when `current_speed > speed_limit × tolerance_factor` (default tolerance: 1.1). |
+
+### 7.6 GPX
+
+| ID | Links to | Specification |
+|---|---|---|
+| SP-GPX-01 | FR-GPX-01, FR-GPX-03 | GPX files **shall** conform to the **GPX 1.1 schema** (topografix.com/GPX/1/1). Track points **shall** include `lat`, `lon`, `ele` (if available), and `time` attributes. OsmAnd extensions **shall** be written under the `osmand:` namespace for speed and heading. |
+| SP-GPX-02 | FR-GPX-02 | Track statistics (total distance, moving time, elevation gain/loss, average and max speed) **shall** be computed from the recorded `WptPt` sequence using the Haversine formula for distances and forward-difference derivatives for speed. |
+
+### 7.7 User Data and Profiles
+
+| ID | Links to | Specification |
+|---|---|---|
+| SP-PRF-01 | FR-PRF-01 | Each user profile **shall** be represented as an `ApplicationMode` instance. All profile-specific settings **shall** be stored under a namespaced key in `OsmandSettings`, backed by Android `SharedPreferences`. |
+| SP-PRF-02 | FR-PRF-03 | Profile and user data export **shall** produce a `.osf` (OsmAnd Settings File) archive containing settings JSON, GPX tracks, favourites XML, and rendering style files. Import **shall** restore all contained data atomically. |
+
+### 7.8 Third-Party Integration
+
+| ID | Links to | Specification |
+|---|---|---|
+| SP-API-01 | FR-PLG-03 | The `OsmAnd-api` module **shall** expose navigation and map control functions to third-party Android apps via **Android Interface Definition Language (AIDL)**. The API **shall** include: set destination, add waypoint, show POI on map, get current location, and start/stop navigation. |
+| SP-API-02 | NFR-E04 | The OsmAnd Tracker plugin **shall** transmit location data to Telegram contacts exclusively via the **Telegram Bot API** over HTTPS. No location data **shall** be routed through OsmAnd servers. |
+
+### 7.9 Security and Privacy
+
+| ID | Links to | Specification |
+|---|---|---|
+| SP-SEC-01 | NFR-E01 | During offline operation, the app **shall** make zero outbound network calls related to user location. Any optional telemetry or crash reporting **shall** be opt-in and disabled by default. |
+| SP-SEC-02 | NFR-E02 | All communication with OsmAnd servers (map downloads, OsmAnd Live updates, OsmAnd Cloud sync) **shall** use **HTTPS (TLS 1.2 or higher)**. Plain HTTP connections **shall not** be used for any data transfer. |
+
+---
+
+## 8. Glossary
 
 | Term | Definition |
 |---|---|
