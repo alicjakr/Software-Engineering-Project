@@ -22,18 +22,18 @@ The **World/Machine Model** (Michael Jackson, 1995) separates the software syste
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                            THE WORLD                                │
+│                             THE WORLD                               │
 │                                                                     │
-│  [User]  [GPS Satellites]  [Road Network]  [OSM Servers]           │
-│  [Device Filesystem]  [Text-to-Speech Engine]  [OsmAnd Cloud]      │
+│  [User]  [GPS Satellites]  [Road Network]  [OSM Servers]            │
+│  [Device Filesystem]  [Text-to-Speech Engine]  [OsmAnd Cloud]       │
 │                                                                     │
 │           ↕ shared phenomena (interface)                            │
-│ ─────────────────────────────────────────────────────────────────  │
-│                          THE MACHINE                                │
+│ ─────────────────────────────────────────────────────────────────── │
+│                            THE MACHINE                              │
 │                                                                     │
-│  [Map Renderer]  [Routing Engine]  [GPS/Location Manager]          │
-│  [Search Engine]  [Map Data Manager]  [GPX Tracker]                │
-│  [Plugin System]  [Settings & Profiles]  [UI Layer]                │
+│  [Map Renderer]  [Routing Engine]  [GPS/Location Manager]           │
+│  [Search Engine]  [Map Data Manager]  [GPX Tracker]                 │
+│  [Plugin System]  [Settings & Profiles]  [UI Layer]                 │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
