@@ -1,0 +1,101 @@
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "primaryColor": "#4A90D9",
+    "primaryTextColor": "#000000",
+    "primaryBorderColor": "#2C3E50",
+    "lineColor": "#555555",
+    "fontSize": "14px",
+    "fontFamily": "Segoe UI, Arial, sans-serif",
+    "clusterBkg": "#FDFEFE",
+    "clusterBorder": "#E59866"
+  }
+}}%%
+
+flowchart LR
+
+    %% ── Style classes ─────────────────────────────────────────────
+    classDef device  fill:#A9DFBF,stroke:#1E8449,color:#000
+    classDef net     fill:#AED6F1,stroke:#1A5276,color:#000
+    classDef osmand  fill:#FAD7A0,stroke:#CA6F1E,color:#000
+    classDef osm     fill:#D7BDE2,stroke:#6C3483,color:#000
+    classDef third   fill:#FDEBD0,stroke:#E59866,color:#000
+    classDef sat     fill:#D5DBDB,stroke:#566573,color:#000
+    classDef aidl    fill:#EBDEF0,stroke:#8E44AD,color:#000
+
+    %% ═══════════════════════════════════════════════════════════════
+    %% GNSS  (above everything — no internet path)
+    %% ═══════════════════════════════════════════════════════════════
+    GPS_SAT(["GPS / GNSS\nSatellites"]):::sat
+
+    %% ═══════════════════════════════════════════════════════════════
+    %% CLIENT ZONE  — the user's mobile device
+    %% ═══════════════════════════════════════════════════════════════
+    subgraph CLIENT["USER DEVICE  (Android / iOS smartphone)"]
+        direction TB
+        GPS_CHIP["GPS / GNSS Chip\n(hardware)"]:::device
+        APP["OsmAnd Application\n(Java/Kotlin + C++ JNI)"]:::device
+        LOCAL_STORE["Local Storage\n.obf map files · GPX tracks\nSharedPreferences · Favourites"]:::device
+        APP <-->|"read / write"| LOCAL_STORE
+        GPS_CHIP -->|"location fix\n(Android LocationManager)"| APP
+    end
+
+    %% ═══════════════════════════════════════════════════════════════
+    %% AIDL CLIENTS  — other apps on the same device
+    %% ═══════════════════════════════════════════════════════════════
+    AIDL_APPS["Third-party Apps\n(AIDL clients\nsame device)"]:::aidl
+
+    %% ═══════════════════════════════════════════════════════════════
+    %% INTERNET  — network boundary node
+    %% ═══════════════════════════════════════════════════════════════
+    INET(["Internet\n(cellular / Wi-Fi)\nHTTPS · TLS 1.2+"]):::net
+
+    %% ═══════════════════════════════════════════════════════════════
+    %% OSMAND INFRASTRUCTURE
+    %% ═══════════════════════════════════════════════════════════════
+    subgraph OSMAND_INFRA["OSMAND INFRASTRUCTURE"]
+        direction TB
+        MAP_SRV["Map Server CDN\nhosts .obf regional files\n+ OsmAnd Live hourly diffs"]:::osmand
+        CLOUD_SRV["OsmAnd Cloud\ncross-device sync\n(favourites · tracks · settings)"]:::osmand
+    end
+
+    %% ═══════════════════════════════════════════════════════════════
+    %% OPENSTREETMAP INFRASTRUCTURE
+    %% ═══════════════════════════════════════════════════════════════
+    subgraph OSM_INFRA["OPENSTREETMAP INFRASTRUCTURE"]
+        direction TB
+        OSM_API["OSM API Server\naccepts POI edits\n+ GPX uploads"]:::osm
+    end
+
+    %% ═══════════════════════════════════════════════════════════════
+    %% THIRD-PARTY SERVICES  (optional / plugin-only)
+    %% ═══════════════════════════════════════════════════════════════
+    subgraph THIRD["THIRD-PARTY SERVICES  (optional)"]
+        direction TB
+        TILE_SRV["Online Tile Servers\nBing · OpenTopo\nThunderforest · etc."]:::third
+        TELEGRAM["Telegram Bot API\nlive location sharing\n(OsmAnd Tracker plugin)"]:::third
+    end
+
+    %% ═══════════════════════════════════════════════════════════════
+    %% CONNECTIONS
+    %% ═══════════════════════════════════════════════════════════════
+
+    %% GNSS — direct radio signal, no internet
+    GPS_SAT -->|"GNSS radio signal"| GPS_CHIP
+
+    %% AIDL — local inter-process communication, no network
+    AIDL_APPS <-->|"AIDL / local IPC"| APP
+
+    %% Device → Internet
+    APP <-->|"HTTPS"| INET
+
+    %% Internet → OsmAnd Infrastructure
+    INET <-->|"download .obf\nLive diffs"| MAP_SRV
+    INET <-->|"sync user data"| CLOUD_SRV
+
+    %% Internet → OSM
+    INET <-->|"submit POI edits\nupload GPX"| OSM_API
+
+    %% Internet → Third-party (dashed = optional)
+    INET -.->|"fetch raster tiles\n(optional)"| TILE_SRV
+    INET -.->|"broadcast live location\n(optional)"| TELEGRAM
