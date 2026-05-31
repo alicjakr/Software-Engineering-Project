@@ -1,0 +1,200 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="5RZYwJmvOfuSedyWuZ1D">
+    <mxGraphModel dx="1548" dy="2141" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-58" parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#5D7F99;strokeColor=#D0CEE2;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="290" width="570" x="1101.81" y="-188" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-59" parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#5D7F99;strokeColor=#D0CEE2;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="290" width="570" x="456" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-60" parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#5D7F99;strokeColor=#D0CEE2;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="290" width="570" x="1110.81" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-61" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;USER DEVICE&lt;/font&gt;" vertex="1">
+          <mxGeometry height="50" width="140" x="1325.81" y="-178" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-62" parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#5D7F99;strokeColor=#D0CEE2;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="290" width="570" x="1776" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-63" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;OSMAND INFRASTRUCTURE&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="300" x="1245.81" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-64" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;OPENSTREETMAP&lt;/font&gt;&lt;span style=&quot;caret-color: rgba(0, 0, 0, 0); color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; white-space: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20parent%3D%221%22%20style%3D%22text%3Bhtml%3D1%3BwhiteSpace%3Dwrap%3BstrokeColor%3Dnone%3BfillColor%3Dnone%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3Brounded%3D0%3B%22%20value%3D%22%26lt%3Bfont%20style%3D%26quot%3Bfont-size%3A%2020px%3B%26quot%3B%26gt%3BOSMAND%20INFRASTRUCTURE%26lt%3B%2Ffont%26gt%3B%22%20vertex%3D%221%22%3E%3CmxGeometry%20height%3D%2280%22%20width%3D%22300%22%20x%3D%221050%22%20y%3D%22190%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="300" x="596" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-65" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;THIRD-PARTY SERVICES&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="300" x="1911" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-66" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=light-dark(#000000,#000000);fontColor=#1A1A1A;" target="zbmbC0xPRO_oY1IL8NDq-79">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1250.57" y="-56.314285714285916" as="sourcePoint" />
+            <mxPoint x="1360.81" y="-55.28571428571422" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-67" parent="1" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=none;imageAspect=0;aspect=fixed;image=https://icons.diagrams.net/icon-cache1/Computer_Hardware_Cute_Style_vol_1-2890/cpu__chip__microchip__processor__computer__pc__technology-1201.svg;fillColor=#5D7F99;strokeColor=#D0CEE2;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="88.75" width="88.75" x="1161.82" y="-101.75" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-68" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="GPS Chip (hardware)" vertex="1">
+          <mxGeometry height="30" width="60" x="1176.19" y="-8" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-69" edge="1" parent="1" source="zbmbC0xPRO_oY1IL8NDq-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=light-dark(#000000,#000000);fontColor=#1A1A1A;" target="zbmbC0xPRO_oY1IL8NDq-67">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-70" parent="1" style="shape=mxgraph.networks2.icon;aspect=fixed;fillColor=#5D7F99;strokeColor=#D0CEE2;network2IconShadow=1;network2bgFillColor=none;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;network2Icon=mxgraph.networks2.satellite;network2IconXOffset=0.0149;network2IconYOffset=-0.00046;network2IconW=1.1553;network2IconH=0.9741;labelBackgroundColor=none;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="91.81" width="108.89" x="771" y="-103.91000000000003" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-71" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;GPS / GNSS Satellites&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="120" x="756" y="0.75" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-72" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;OsmAnd App (Android / iOS)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="120" x="1332.81" y="13.75" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-73" edge="1" parent="1" source="zbmbC0xPRO_oY1IL8NDq-74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=light-dark(#000000,#000000);fontColor=#1A1A1A;startArrow=classic;startFill=1;" target="zbmbC0xPRO_oY1IL8NDq-79">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-74" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;labelBackgroundColor=none;fillColor=#5D7F99;strokeColor=#D0CEE2;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="80" width="60" x="1549.81" y="-97" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-75" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Local Storage .obf files&amp;nbsp;&lt;span style=&quot;text-align: start;&quot;&gt;· GPX tracks&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;text-align: start;&quot;&gt;· Favourites (.gpx)&lt;/span&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="136" x="1511.81" y="-2" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-77" edge="1" parent="1" source="zbmbC0xPRO_oY1IL8NDq-78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=light-dark(#000000,#000000);fontColor=#1A1A1A;curved=1;startArrow=classic;startFill=1;" target="zbmbC0xPRO_oY1IL8NDq-79">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1456" y="-128" />
+              <mxPoint x="1456" y="-56" />
+            </Array>
+            <mxPoint x="1860" y="-140" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-78" parent="1" style="sketch=0;verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;fillColor=#5D7F99;align=center;outlineConnect=0;pointerEvents=1;shape=mxgraph.citrix2.mobile;labelBackgroundColor=none;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="115" width="58.08" x="1867.26" y="-197.5" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-116" edge="1" parent="1" source="zbmbC0xPRO_oY1IL8NDq-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;curved=1;startArrow=classic;startFill=1;strokeColor=light-dark(#000000,#000000);" target="zbmbC0xPRO_oY1IL8NDq-103">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1391" y="70" />
+              <mxPoint x="1708" y="70" />
+              <mxPoint x="1708" y="39" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-79" parent="1" style="sketch=0;verticalLabelPosition=bottom;sketch=0;aspect=fixed;html=1;verticalAlign=top;align=center;outlineConnect=0;pointerEvents=1;shape=mxgraph.citrix2.mobile;labelBackgroundColor=none;" value="" vertex="1">
+          <mxGeometry height="118.75" width="59.98" x="1360.81" y="-115.75" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-80" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;3rd-party Apps (AIDL clients)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="110" x="1841" y="-80" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-81" edge="1" parent="1" source="zbmbC0xPRO_oY1IL8NDq-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=light-dark(#000000,#000000);fontColor=#1A1A1A;startArrow=classic;startFill=1;" target="zbmbC0xPRO_oY1IL8NDq-72">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-82" edge="1" parent="1" source="zbmbC0xPRO_oY1IL8NDq-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=light-dark(#000000,#000000);fontColor=#1A1A1A;curved=1;startArrow=none;startFill=0;endArrow=classic;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="zbmbC0xPRO_oY1IL8NDq-90">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-83" edge="1" parent="1" source="zbmbC0xPRO_oY1IL8NDq-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=light-dark(#000000,#000000);fontColor=#1A1A1A;curved=1;startArrow=classic;startFill=1;exitX=0.13;exitY=0.77;exitDx=0;exitDy=0;exitPerimeter=0;" target="zbmbC0xPRO_oY1IL8NDq-86">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-84" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#5D7F99;strokeColor=#D0CEE2;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="105" width="174.31" x="1304.65" y="161" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-85" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Internet HTTPS / TLS 1.2+&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;:443&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="115.32" x="1338.15" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-86" parent="1" style="strokeColor=#D0CEE2;html=1;verticalLabelPosition=bottom;labelBackgroundColor=none;verticalAlign=top;outlineConnect=0;shadow=0;dashed=0;shape=mxgraph.rack.general.server_2;fillColor=#5D7F99;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="101.29" width="50" x="1230.81" y="512" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-87" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;OsmAnd Map Servers (CDN)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="110" x="1200.81" y="622" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-88" parent="1" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Virtual_WANs.svg;labelBackgroundColor=none;fillColor=#5D7F99;strokeColor=#D0CEE2;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="80" width="80" x="1473.96" y="527" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-89" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;OsmAnd Cloud (sync)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="125.19" x="1452.81" y="612" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-90" parent="1" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/generic_server.svg;labelBackgroundColor=none;fillColor=#5D7F99;strokeColor=#D0CEE2;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="100" width="56" x="715" y="512" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-91" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;OSM API Server&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="105" x="693.5" y="622" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-92" parent="1" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.ios.iBgMap;strokeColor=#D0CEE2;strokeColor2=#008cff;fillColor2=#96D1FF;labelBackgroundColor=none;fillColor=#5D7F99;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="87.5" width="67.12" x="1893.25" y="512" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-93" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Tile Servers (Bing, OpenTopo...)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="120" x="1866" y="614.5" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-94" parent="1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.oval_callout;labelBackgroundColor=none;fillColor=#5D7F99;strokeColor=#D0CEE2;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="60" width="100" x="2146" y="522" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-95" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Telegram TDLib (live location)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="120" x="2136" y="592" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-96" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#1A1A1A;" value="GNSS radio signal" vertex="1">
+          <mxGeometry height="30" width="120" x="950" y="-82" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-97" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#1A1A1A;fontSize=10;" value="location fix (Android LocationManager or Google FusedLocationProvider)" vertex="1">
+          <mxGeometry height="30" width="120" x="1245.81" y="-101.25" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-98" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#1A1A1A;" value="AIDL / local IPC" vertex="1">
+          <mxGeometry height="30" width="100" x="1596" y="-155" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-99" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#1A1A1A;" value="read / write" vertex="1">
+          <mxGeometry height="30" width="70" x="1451.81" y="-80" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-100" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#1A1A1A;" value="HTTPS:443" vertex="1">
+          <mxGeometry height="30" width="60" x="1396" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-101" edge="1" parent="1" source="zbmbC0xPRO_oY1IL8NDq-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.49;entryY=-0.007;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=light-dark(#000000,#000000);fontColor=#1A1A1A;curved=1;dashed=1;startArrow=classic;startFill=1;exitX=0.96;exitY=0.7;exitDx=0;exitDy=0;exitPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1478.9599910371703" y="213.47619047619037" as="sourcePoint" />
+            <mxPoint x="1926.1388000000002" y="511.3874999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-102" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#1A1A1A;" value="fetch raster tiles (optional)&lt;div&gt;:443&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="100" x="1825.34" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-103" parent="1" style="sketch=0;verticalLabelPosition=bottom;aspect=fixed;html=1;verticalAlign=top;strokeColor=none;fillColor=#5D7F99;align=center;outlineConnect=0;pointerEvents=1;shape=mxgraph.citrix2.mobile;labelBackgroundColor=none;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="115" width="58.08" x="1996" y="-18" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-104" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;fontColor=#1A1A1A;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;OsmAnd Telegram App (Android)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="150" x="1951" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-106" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#1A1A1A;" value="AIDL / local IPC" vertex="1">
+          <mxGeometry height="30" width="100" x="1760" y="13.75" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-107" edge="1" parent="1" source="zbmbC0xPRO_oY1IL8NDq-103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=light-dark(#000000,#000000);fontColor=#1A1A1A;curved=1;dashed=1;startArrow=none;startFill=0;endArrow=classic;endFill=1;" target="zbmbC0xPRO_oY1IL8NDq-94">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-108" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#1A1A1A;" value="broadcast live location (optional)&lt;div&gt;:443&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="130" x="2180" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-109" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#000000;" value="&lt;p&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;submit POI edits&amp;nbsp;upload GPX &amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;:443&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="30" width="110" x="896" y="197" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-110" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#1A1A1A;" value="download .obf&lt;div&gt;Live diffs&lt;/div&gt;&lt;div&gt;:443&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="89.81" x="1186" y="302" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-111" edge="1" parent="1" source="zbmbC0xPRO_oY1IL8NDq-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.8;exitY=0.8;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.492;entryY=0.02;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=light-dark(#000000,#000000);fontColor=#1A1A1A;curved=1;startArrow=classic;startFill=1;" target="zbmbC0xPRO_oY1IL8NDq-88">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1513" y="245" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-112" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#1A1A1A;" value="&lt;div&gt;sync user data&lt;br&gt;&lt;/div&gt;&lt;div&gt;:443&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="90" x="1501" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-113" edge="1" parent="1" source="zbmbC0xPRO_oY1IL8NDq-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=#1A1A1A;strokeColor=light-dark(#000000,#000000);dashed=1;startArrow=none;startFill=0;endArrow=classic;endFill=1;curved=1;" target="zbmbC0xPRO_oY1IL8NDq-88">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zbmbC0xPRO_oY1IL8NDq-114" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=#1A1A1A;" value="live location broadcast (optional)&lt;div&gt;:443&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="110" x="1280.81" y="310" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
