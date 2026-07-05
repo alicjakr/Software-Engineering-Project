@@ -161,8 +161,6 @@ Only phenomena listed here may appear in specification clauses.
 
 ## 9. Requirements
 
-Requirements are stated in the user's vocabulary. No algorithms, file formats, byte counts, or class names appear here.
-
 ### 9.1 Navigation and routing
 
 | ID | Requirement | Acceptance |
@@ -324,8 +322,6 @@ Accounts are optional. Core features — map viewing, routing, search, recording
 ---
 
 ## 12. Specifications
-
-This is the only section that may name concrete algorithms, file formats, version numbers, byte sizes, and protocols.
 
 ### 12.1 Routing *(→ R-NAV-1..6)*
 
