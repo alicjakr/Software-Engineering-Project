@@ -169,7 +169,7 @@ Only phenomena listed here may appear in specification clauses.
 | R-NAV-2 | The user shall be able to compute routes appropriate to walking, cycling, driving, and public transport. | For each profile, compute a route; observe a plausible result. |
 | R-NAV-3 | The user shall be able to add intermediate waypoints to a planned route. | Add 1–3 waypoints; observe the route passes through them in order. |
 | R-NAV-4 | When the user's position falls away from the current route, the Machine shall produce an updated route without further user input. | Drive off-route; observe a new route appears without prompting. |
-| R-NAV-5 | The user shall be able to avoid named classes of road or feature. | Toggle each avoidance; observe the route obeys the toggle. |
+| R-NAV-5 | The user shall be able to avoid specific road types or features. | Toggle each avoidance; observe the route obeys the toggle. |
 | R-NAV-6 | The user shall be able to cancel an active navigation session at any time and return to map browsing. | Tap stop-navigation; observe map view restored and guidance silenced. |
 
 ### 9.2 Voice guidance
