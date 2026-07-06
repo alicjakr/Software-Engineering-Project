@@ -117,7 +117,8 @@ Requirements state what users need from the system. No algorithms, file formats,
 2. The user shall be able to sign in to an OsmAnd Cloud account to enable data sync.
 3. The user shall be able to link an OSM account to enable community contributions.
 4. Signed-in state shall survive app restarts and device reboots while the session token remains valid.
-5. The user shall not be asked to re-authenticate for routine operations while their refresh token is valid.
+5. The user shall not be asked to re-authenticate for routine operations while their session remains valid.
+6. The user shall be able to permanently delete their OsmAnd Cloud account and all data synced to it.
 
 ---
 
@@ -179,7 +180,7 @@ Specifications define the technical details of how the Machine satisfies the req
 1. Map-bug notes are submitted to `https://api.openstreetmap.org/api/0.6/notes`.
 2. GPX tracks are uploaded to `https://api.openstreetmap.org/api/0.6/gpx/create`.
 3. POI edits are staged locally and uploaded when network is available.
-4. OSM account linking uses OAuth 2.0 with PKCE against `https://www.openstreetmap.org/oauth2/authorize`; scopes are limited to notes, POI edits, and GPX uploads; the returned state parameter is validated before the token exchange.
+4. OSM account linking uses OAuth 2.0 authorization-code grant (client secret, no PKCE) against `https://www.openstreetmap.org/oauth2/authorize` and `https://www.openstreetmap.org/oauth2/token`; scopes are `read_prefs write_api write_gpx write_notes`.
 
 ### Plugins and third-party integration
 
@@ -190,10 +191,13 @@ Specifications define the technical details of how the Machine satisfies the req
 
 ### Accounts and credentials
 
-1. OsmAnd Cloud sign-in uses an email plus verification-code flow over TLS.
-2. Access and refresh tokens are stored in the platform's encrypted credential store; they are not written to logs, exports, or crash reports.
-3. A 401 or token-expired response triggers a silent token refresh using the stored refresh token; the user is prompted to re-authenticate only when the refresh itself fails.
-4. On sign-out, the access token, refresh token, and cached account profile are deleted; non-account-bound user data is not touched.
+1. OsmAnd Cloud sign-in uses an email plus verification-code flow over TLS; the account is created automatically on first successful verification.
+2. The verification code is single use and valid for 10 minutes; the client enforces no separate resend cooldown or failed-attempt lockout.
+3. A single access token is issued per device on successful code verification; there is no separate refresh token, and the client has no fixed expiry for it.
+4. An invalid or expired access token is reported to the user as a sign-in error; the user re-authenticates via a new email verification code rather than a silent refresh.
+5. The access token is stored in a local app preference; it is not written to logs, exports, or crash reports.
+6. On sign-out, the device ID and access token are deleted; the account email and non-account-bound user data are not touched.
+7. On account deletion, the same verification-code flow re-confirms identity; on confirmation, server-side synced data and the local device ID and access token are deleted; non-account-bound local data is not touched.
 
 ### Privacy and network
 

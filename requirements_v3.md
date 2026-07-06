@@ -257,7 +257,8 @@ Accounts are optional. Core features — map viewing, routing, search, recording
 | R-ACC-3 | The signed-in user shall be able to sign out, ending the session and removing stored tokens. | Tap Sign out; observe session cleared. |
 | R-ACC-4 | The user shall be able to link an OSM account to enable OSM contributions. | Complete OAuth in browser; return to app; observe a valid link. |
 | R-ACC-5 | Signed-in state shall survive app restart and device reboot while stored tokens remain valid. | Sign in; reboot; relaunch; observe still signed in. |
-| R-ACC-6 | While a refresh token is valid, the user shall not be asked to re-authenticate for routine operations. | Wait beyond access-token lifetime; trigger a sync; observe no prompt. |
+| R-ACC-6 | While signed in, the user shall not be asked to re-authenticate for routine operations. | Trigger a sync well after sign-in; observe no re-authentication prompt. |
+| R-ACC-7 | The user shall be able to permanently delete their OsmAnd Cloud account and all data synced to it. | Delete account; observe local sign-out and removal of synced data server-side. |
 
 ### 9.11 Observability
 
@@ -301,7 +302,6 @@ Accounts are optional. Core features — map viewing, routing, search, recording
 | Q-REL-2 | Field crash rate shall not exceed 0.1 % of sessions for the headline build flavour. | Measured per §12.13. |
 | Q-USA-1 | The UI shall be available in ≥ 70 natural-language locales. | Measured per §12.13. |
 | Q-SEC-1 | Data exchanged with OsmAnd-controlled endpoints shall be protected from interception or tampering in transit. | Verified per §12.12. |
-| Q-SEC-2 | Stored account credentials shall be protected from exposure if on-device storage is accessed directly. | Measured per §12.13. |
 | Q-PRIV-1 | While offline, the app shall make no outbound network call containing user location. | Capture network while offline-routing; observe zero location-bearing packets. |
 
 ---
@@ -413,15 +413,13 @@ Accounts are optional. Core features — map viewing, routing, search, recording
 | Attribute | Value |
 |---|---|
 | OsmAnd Cloud sign-in | Email + verification-code flow over TLS; account created automatically on first successful verification |
-| Verification code | 6-digit numeric code, single use, valid for 10 minutes |
-| Code resend | 60 s cooldown between sends; max 5 codes issued per email per hour |
-| Failed attempts | Sign-in blocked for 15 minutes after 5 consecutive incorrect codes for the same email |
-| Access token lifetime | 1 hour |
-| Refresh token lifetime | 30 days, sliding, revoked immediately on sign-out |
-| OSM account linking | OAuth 2.0 with PKCE; scopes limited to notes, POI edits, and GPX uploads; state parameter validated |
-| Token storage | Access and refresh tokens in the platform's encrypted credential store; not written to logs or exports |
-| Silent refresh | A 401 or expired-token response triggers silent refresh; user prompted only when refresh itself fails |
-| Sign-out | Deletes access token, refresh token, and cached account profile; non-account-bound data untouched |
+| Verification code | Single use, valid for 10 minutes; no client-enforced resend cooldown or failed-attempt lockout |
+| Device access token | One access token issued per device on successful code verification; no separate refresh token; no fixed client-known expiry |
+| Token invalid/expired | Reported to the user as a sign-in error; user re-authenticates via a new email code — not a silent refresh |
+| OSM account linking | OAuth 2.0 authorization-code grant with client secret (no PKCE); scopes `read_prefs write_api write_gpx write_notes` |
+| Token storage | Access token stored in a local app preference |
+| Sign-out | Deletes device ID and access token; account email and non-account-bound data untouched |
+| Account deletion | Re-uses the verification-code flow to confirm identity; on success, server-side synced data and local device ID/access token are deleted; non-account-bound local data untouched |
 
 ### 12.11 Logging and observability *(→ R-OBS-1..3)*
 
@@ -453,7 +451,6 @@ Accounts are optional. Core features — map viewing, routing, search, recording
 | Q-PERF-6 (RAM) | Resident memory via OS memory-info API after 5 min of pan/zoom over the largest enabled region |
 | Q-REL-2 (crash rate) | `1 − crashes_with_consent / sessions_with_consent`, weekly per build flavour, from opt-in telemetry |
 | Q-USA-1 (locales) | Count of locale string bundles with ≥ 90 % key coverage of the default bundle |
-| Q-SEC-2 (credentials) | Credentials stored in Android EncryptedSharedPreferences |
 
 ---
 
