@@ -31,7 +31,7 @@ This document covers the Android edition. Out of scope: OsmAnd MapCreator, OsmAn
 | Profile | A named configuration set for a specific travel mode (car, bicycle, pedestrian, etc.). |
 | Plugin | An optional feature module that extends the app through defined extension hooks. |
 | GNSS | Global Navigation Satellite System — encompasses GPS, GLONASS, Galileo, and BeiDou. |
-| OAuth 2.0 | Open standard for delegated authorisation; used with PKCE for OSM account linking. |
+| OAuth 2.0 | Open standard for delegated authorisation; used for OSM account linking. |
 | PKCE | Proof Key for Code Exchange — OAuth 2.0 extension that prevents authorisation-code interception. |
 | Foreground service | An Android service running with a persistent notification, exempt from aggressive background-process killing. |
 
@@ -152,15 +152,15 @@ Specifications define the technical details of how the Machine satisfies the req
 1. Route calculation uses bidirectional A\* search over the road-network index of the OBF map file; for long-distance routes a Hierarchical Highway (HH) contraction-hierarchy algorithm is used instead.
 2. All routing constants — speeds, penalties, avoidances per profile — are defined in an external `routing.xml` file; none are hard-coded in the application.
 3. Route calculation makes no network call; it reads only on-device OBF files.
-4. An off-route condition is raised after 3 consecutive GNSS fixes lying outside the route corridor.
+4. An off-route condition is raised when the current GNSS fix lies beyond a distance tolerance from the route corridor, evaluated on each location update.
 5. A new route is produced within 5 s of an off-route condition on a mid-range device.
-6. A route supports up to 32 ordered intermediate waypoints.
+6. A route supports multiple ordered intermediate waypoints; no fixed upper count is enforced by the routing engine.
 7. Default shortest-path speeds: car 55 km/h, bicycle 15 km/h.
 
 ### Voice guidance
 
 1. Spoken instructions are delivered via the OS Text-to-Speech service or pre-recorded audio packs, as the user selects.
-2. Announcements are triggered at 2 000 m, 500 m, and 50 m before each manoeuvre (configurable per profile).
+2. Announcement trigger distances are computed per profile from the current speed and a target lead time for each announcement tier (prepare, turn, immediate), not fixed distances; faster travel triggers earlier announcements.
 3. Per-language voice grammars are JavaScript files executed by an embedded scripting engine, so language packs can be updated independently of the app binary.
 4. The app requests transient audio focus before each prompt so that other media ducks or pauses; focus is yielded immediately on an incoming call.
 5. The overspeed warning fires when current speed exceeds the road's `maxspeed` value; it repeats at most every 120 s.
@@ -176,7 +176,7 @@ Specifications define the technical details of how the Machine satisfies the req
 ### Map data
 
 1. Map data uses the OsmAnd Binary Format (OBF): a compact spatially-indexed binary compiled from OSM data by external tooling.
-2. Each OBF file contains five indexes: road network, map objects, address, POI, and public transport; each is spatially indexed for tile-based access.
+2. Each OBF file contains six indexes: road network (routing), map objects, address, POI, public transport, and a contraction-hierarchy (HH) routing index used for long-distance route pre-processing; each is spatially indexed for tile-based access.
 3. OBF files are read via memory-mapped I/O so resident RAM scales with the visible viewport, not with the total file size on disk.
 4. Live updates are binary diff files applied to the base OBF; available at minimum hourly cadence for subscribers.
 5. Downloads use HTTP Range requests to resume from a partial-file offset after interruption.
@@ -201,7 +201,7 @@ Specifications define the technical details of how the Machine satisfies the req
 1. Map-bug notes are submitted to `https://api.openstreetmap.org/api/0.6/notes`.
 2. GPX tracks are uploaded to `https://api.openstreetmap.org/api/0.6/gpx/create`.
 3. POI edits are staged locally and uploaded when network is available.
-4. OSM account linking uses OAuth 2.0 authorization-code grant (client secret, no PKCE) against `https://www.openstreetmap.org/oauth2/authorize` and `https://www.openstreetmap.org/oauth2/token`; scopes are `read_prefs write_api write_gpx write_notes`.
+4. OSM account linking uses OAuth 2.0 authorization-code grant (client secret, no PKCE) against `https://www.openstreetmap.org/oauth2/authorize` and `https://www.openstreetmap.org/oauth2/token`; requested scopes are supplied as an authorization parameter and cover account, notes, GPX, and POI editing permissions.
 
 ### Plugins and third-party integration
 
