@@ -298,12 +298,12 @@ Accounts are optional. Core features — map viewing, routing, search, recording
 | Q-PERF-3 | Re-routing after a deviation shall complete within 5 s. | Measured per §12.13. |
 | Q-PERF-4 | Cold start to interactive map shall complete within 5 s on a mid-range device. | Measured per §12.13. |
 | Q-PERF-5 | Navigation with the screen off shall consume ≤ 40 % of the power of screen-on navigation. | Measured per §12.13. |
-| Q-PERF-6 | Memory use shall scale with the visible viewport, not the total map file size. | Total resident memory ≤ 512 MB with any regional map loaded; measured per §12.13. |
+| Q-PERF-6 | Memory use shall remain bounded regardless of the size of installed map data. | Total resident memory ≤ 512 MB with any regional map loaded; measured per §12.13. |
 | Q-REL-1 | The app shall remain operational when GPS is lost or intermittent during navigation. | Cut GPS for 5 min and restore; observe no crash; guidance resumes. |
 | Q-REL-2 | Field crash rate shall not exceed 0.1 % of sessions for the headline build flavour. | Measured per §12.13. |
 | Q-USA-1 | The UI shall be available in ≥ 70 natural-language locales. | Measured per §12.13. |
-| Q-SEC-1 | All network traffic to OsmAnd-controlled endpoints shall use TLS 1.2 or higher. | Verified per §12.12. |
-| Q-SEC-2 | OSM and OsmAnd Cloud credentials shall not be stored in plaintext on disk. | Measured per §12.13. |
+| Q-SEC-1 | Data exchanged with OsmAnd-controlled endpoints shall be protected from interception or tampering in transit. | Verified per §12.12. |
+| Q-SEC-2 | Stored account credentials shall be protected from exposure if on-device storage is accessed directly. | Measured per §12.13. |
 | Q-PRIV-1 | While offline, the app shall make no outbound network call containing user location. | Capture network while offline-routing; observe zero location-bearing packets. |
 
 ---
@@ -416,7 +416,12 @@ This is the only section that may name concrete algorithms, file formats, versio
 
 | Attribute | Value |
 |---|---|
-| OsmAnd Cloud sign-in | Email + verification-code flow over TLS |
+| OsmAnd Cloud sign-in | Email + verification-code flow over TLS; account created automatically on first successful verification |
+| Verification code | 6-digit numeric code, single use, valid for 10 minutes |
+| Code resend | 60 s cooldown between sends; max 5 codes issued per email per hour |
+| Failed attempts | Sign-in blocked for 15 minutes after 5 consecutive incorrect codes for the same email |
+| Access token lifetime | 1 hour |
+| Refresh token lifetime | 30 days, sliding, revoked immediately on sign-out |
 | OSM account linking | OAuth 2.0 with PKCE; scopes limited to notes, POI edits, and GPX uploads; state parameter validated |
 | Token storage | Access and refresh tokens in the platform's encrypted credential store; not written to logs or exports |
 | Silent refresh | A 401 or expired-token response triggers silent refresh; user prompted only when refresh itself fails |
