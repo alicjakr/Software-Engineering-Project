@@ -1,9 +1,9 @@
 # Requirements Specification — OsmAnd
-## World Machine Model
 
 **Project:** OsmAnd
+
 **Repository:** https://github.com/osmandapp/OsmAnd
-**Date:** June 2026
+
 
 ---
 
@@ -15,9 +15,30 @@ This document covers the Android edition. Out of scope: OsmAnd MapCreator, OsmAn
 
 ---
 
-## 1. World
+## 1. Glossary
 
-The World is the environment OsmAnd operates in. These are static facts that hold whether or not the app exists.
+| Term | Definition |
+|---|---|
+| OBF | OsmAnd Binary Format — compact indexed binary map data compiled from OpenStreetMap. |
+| OsmAnd Live | Subscription service delivering hourly incremental map updates as binary diffs. |
+| GPX | GPS Exchange Format — XML standard for recording tracks and waypoints. |
+| OSF | OsmAnd Settings File — archive format for backup and restore of settings, tracks, and favourites. |
+| POI | Point of Interest — a named geographic feature such as a shop, restaurant, or landmark. |
+| A\* | A-star bidirectional pathfinding algorithm used for short and medium-distance routes. |
+| HH routing | Hierarchical Highway routing — contraction-hierarchy algorithm used for long-distance routes. |
+| TTS | Text-to-Speech — OS service that synthesises spoken instructions from text. |
+| AIDL | Android Interface Definition Language — the IPC mechanism used for OsmAnd's third-party API. |
+| Profile | A named configuration set for a specific travel mode (car, bicycle, pedestrian, etc.). |
+| Plugin | An optional feature module that extends the app through defined extension hooks. |
+| GNSS | Global Navigation Satellite System — encompasses GPS, GLONASS, Galileo, and BeiDou. |
+| OAuth 2.0 | Open standard for delegated authorisation; used with PKCE for OSM account linking. |
+| PKCE | Proof Key for Code Exchange — OAuth 2.0 extension that prevents authorisation-code interception. |
+| Foreground service | An Android service running with a persistent notification, exempt from aggressive background-process killing. |
+
+
+## 2. World
+
+The World is the environment OsmAnd operates in - static facts that hold whether or not the app exists.
 
 1. Consumer GNSS receivers produce position fixes outdoors; accuracy degrades in tunnels, indoors, and urban canyons.
 2. A moving device's position and heading can be extrapolated from its last known fix, speed, and bearing when GNSS signal is temporarily lost.
@@ -40,9 +61,9 @@ The World is the environment OsmAnd operates in. These are static facts that hol
 
 ---
 
-## 2. Requirements
+## 3. Requirements
 
-Requirements state what users need from the system. No algorithms, file formats, or technical details appear here.
+Requirements state what users need from the system - no algorithms, file formats, or technical details appear here.
 
 ### Navigation and routing
 
@@ -122,7 +143,7 @@ Requirements state what users need from the system. No algorithms, file formats,
 
 ---
 
-## 3. Specifications
+## 4. Specifications
 
 Specifications define the technical details of how the Machine satisfies the requirements.
 
@@ -205,42 +226,3 @@ Specifications define the technical details of how the Machine satisfies the req
 2. When the app is offline, no routing, rendering, search, or location code path opens an outbound network connection.
 3. Log output does not include GPS coordinates, OAuth tokens, or account credentials.
 4. Crash reports are written locally; upload to any remote service requires explicit user opt-in.
-
----
-
-## 4. Machine
-
-### 4.1 External run-time shape
-
-The Machine is the **OsmAnd Android application** installed on a single user's device. It runs as an Activity-based app with a foreground service for background sessions and a persistent settings store. It has no server-side counterpart at runtime — each user's Machine is the locally installed app plus its on-device data. Platform scope: Android 7.0 (SDK 24) and above; target SDK 35.
-
-### 4.2 Internal modules *(informative)*
-
-| Module | Languages | Responsibility |
-|---|---|---|
-| `OsmAnd` | Java + Kotlin | Android UI, activity lifecycle, foreground service, plugin host, AIDL host |
-| `OsmAnd-java` | Java | Platform-neutral core: OBF reading, A\* routing, search, rendering rules — no Android dependencies |
-| `OsmAnd-shared` | Kotlin Multiplatform | Cross-platform domain models, GPX, settings, coroutines, SQL access |
-| `OsmAnd-api` | AIDL + Java | Public IPC surface for third-party Android apps |
-
----
-
-## 5. Glossary
-
-| Term | Definition |
-|---|---|
-| OBF | OsmAnd Binary Format — compact indexed binary map data compiled from OpenStreetMap. |
-| OsmAnd Live | Subscription service delivering hourly incremental map updates as binary diffs. |
-| GPX | GPS Exchange Format — XML standard for recording tracks and waypoints. |
-| OSF | OsmAnd Settings File — archive format for backup and restore of settings, tracks, and favourites. |
-| POI | Point of Interest — a named geographic feature such as a shop, restaurant, or landmark. |
-| A\* | A-star bidirectional pathfinding algorithm used for short and medium-distance routes. |
-| HH routing | Hierarchical Highway routing — contraction-hierarchy algorithm used for long-distance routes. |
-| TTS | Text-to-Speech — OS service that synthesises spoken instructions from text. |
-| AIDL | Android Interface Definition Language — the IPC mechanism used for OsmAnd's third-party API. |
-| Profile | A named configuration set for a specific travel mode (car, bicycle, pedestrian, etc.). |
-| Plugin | An optional feature module that extends the app through defined extension hooks. |
-| GNSS | Global Navigation Satellite System — encompasses GPS, GLONASS, Galileo, and BeiDou. |
-| OAuth 2.0 | Open standard for delegated authorisation; used with PKCE for OSM account linking. |
-| PKCE | Proof Key for Code Exchange — OAuth 2.0 extension that prevents authorisation-code interception. |
-| Foreground service | An Android service running with a persistent notification, exempt from aggressive background-process killing. |
