@@ -109,12 +109,15 @@ produced using the World-Machine Model (Jackson problem-frames) method:
 
 - [`requirements_specification.md`](requirements_specification.md) — glossary, World
   assumptions, Requirements, and Specifications
-- [`architecture_diagrams/`](architecture_diagrams) — logical (context, components,
-  mapdata/navigation views) and physical architecture
-- [`class_diagrams/`](class_diagrams) — routing subsystem, map data & resource
-  management, auth & accounts, app core/profiles/user data
-- [`system_dynamics_diagrams/`](system_dynamics_diagrams) — sequence (route
+- [`diagrams/logical/`](diagrams/logical) — logical architecture: context, components,
+  mapdata/navigation drill-down views
+- [`diagrams/physical/`](diagrams/physical) — physical (deployment) architecture
+- [`diagrams/class/`](diagrams/class) — class diagrams: routing subsystem, map data &
+  resource management, auth & accounts, app core/profiles/user data
+- [`diagrams/system_dynamics/`](diagrams/system_dynamics) — sequence (route
   calculation) and state machine (cloud sign-in) diagrams
+- [`diagrams/activity/`](diagrams/activity) — activity diagrams: the search → route
+  calculation → guidance flow, split into three phases
 
 ## License
 

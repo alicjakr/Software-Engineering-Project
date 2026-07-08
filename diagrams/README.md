@@ -15,12 +15,12 @@ The four logical diagrams zoom in progressively — start wide, then drill down.
 
 | # | File | What it answers | Scope |
 |---|------|-----------------|-------|
-| 1 | `logical_context_detailed.png` | *What does the system talk to?* | OsmAnd as one box + every external system across the World/Machine boundary |
-| 2 | `logical_components_detailed.png` | *How is the system structured?* | The internal layers and their aggregate dependencies |
-| 3 | `logical_view_navigation.png` | *How does routing & guidance work?* | Drill-down slice: GPS fix → route → voice |
-| 4 | `logical_view_mapdata.png` | *How does map data & rendering work?* | Drill-down slice: download → `.obf` → render → search |
+| 1 | `logical/logical_context_detailed.png` | *What does the system talk to?* | OsmAnd as one box + every external system across the World/Machine boundary |
+| 2 | `logical/logical_components_detailed.png` | *How is the system structured?* | The internal layers and their aggregate dependencies |
+| 3 | `logical/logical_view_navigation.png` | *How does routing & guidance work?* | Drill-down slice: GPS fix → route → voice |
+| 4 | `logical/logical_view_mapdata.png` | *How does map data & rendering work?* | Drill-down slice: download → `.obf` → render → search |
 
-### 1. Context — `logical_context_detailed.png`
+### 1. Context — `logical/logical_context_detailed.png`
 The outermost view. OsmAnd is a single blue box; everything else is an external
 system it exchanges data with, grouped into **Device & OS** (GNSS, TTS, sensors,
 BLE/OBD/AIS, Android Auto), **OsmAnd Backend** (download servers, OsmAnd Live,
@@ -28,7 +28,7 @@ OsmAnd Cloud, weather service), **OSM Ecosystem** (OSM API, tile servers, online
 routing, Mapillary), and **Companion & 3rd-party apps** (OsmAnd Telegram, AIDL
 clients). Arrows are the shared phenomena that cross the boundary.
 
-### 2. Component overview — `logical_components_detailed.png`
+### 2. Component overview — `logical/logical_components_detailed.png`
 The inside of the box, as layers. Read **top to bottom** — each layer depends on the
 one below it:
 
@@ -46,13 +46,13 @@ one below it:
 Arrows here are **aggregate** (layer-to-layer). For the real call chains, use the two
 slices below. Solid = call/data flow; dashed = plugin extension point.
 
-### 3. Navigation slice — `logical_view_navigation.png`
+### 3. Navigation slice — `logical/logical_view_navigation.png`
 The routing and turn-by-turn guidance pipeline: `GNSS → OsmAndLocationProvider →
 RoutingHelper → RouteProvider`, which picks a route service (offline OsmAnd engine /
 online provider / follow a GPX track), then the voice chain (`VoiceRouter →
 CommandPlayer → OS TTS` or recorded voice packs).
 
-### 4. Map-data slice — `logical_view_mapdata.png`
+### 4. Map-data slice — `logical/logical_view_mapdata.png`
 The map-data lifecycle: downloading and Live-updating `.obf` files, opening them via
 `ResourceManager` / `BinaryMapIndexReader`, the native rendering path with `.render.xml`
 style evaluation, search, raster tile overlays, and OsmAnd Cloud sync.
@@ -63,14 +63,14 @@ style evaluation, search, raster tile overlays, and OsmAnd Cloud sync.
   (see each diagram's legend for the exact mapping).
 - **Solid arrow** = call / data flow. **Dashed arrow** = plugin extension or delegation.
 - **`( )` circles** in the slice diagrams are external systems — their full detail is
-  in `logical_context_detailed.png`.
+  in `logical/logical_context_detailed.png`.
 - Box labels use real source names (`RoutingHelper`, `BinaryMapIndexReader`,
   `SearchUICore`, …) so they're traceable to the code.
 
 ## Superseded / other files
 
-- `logical_old/logical_context_v1.png`, `logical_old/logical_components_v1.png` —
+- `logical/old/logical_context_v1.png`, `logical/old/logical_components_v1.png` —
   the earlier, coarser first-draft logical views. Kept for history; **use the
   `*_detailed` and `logical_view_*` files instead.**
-- `physical_architecture.drawio.png` — the **physical** architecture (deployment /
+- `physical/physical_architecture.drawio.png` — the **physical** architecture (deployment /
   runtime nodes), a separate concern from the logical views above.
