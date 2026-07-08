@@ -147,6 +147,8 @@ Requirements state what users need from the system - no algorithms, file formats
 
 Specifications define the technical details of how the Machine satisfies the requirements.
 
+> **Note:** All numeric values below were checked against source (`OsmAnd-resources/routing/routing.xml` for routing constants; `BaseMapLayer.java` and `TileSourceManager.java` for zoom range and tile size), except the 5 s reroute target (Navigation and routing, #5) and the 1 s marker-redraw target (Map rendering, #4), which read as design targets rather than named constants and could not be pinned to a specific source line.
+
 ### Navigation and routing
 
 1. Route calculation uses bidirectional A\* search over the road-network index of the OBF map file; for long-distance routes a Hierarchical Highway (HH) contraction-hierarchy algorithm is used instead.
@@ -155,7 +157,7 @@ Specifications define the technical details of how the Machine satisfies the req
 4. An off-route condition is raised when the current GNSS fix lies beyond a distance tolerance from the route corridor, evaluated on each location update.
 5. A new route is produced within 5 s of an off-route condition on a mid-range device.
 6. A route supports multiple ordered intermediate waypoints; no fixed upper count is enforced by the routing engine.
-7. Default shortest-path speeds: car 55 km/h, bicycle 15 km/h.
+7. Default shortest-path speeds: car 45 km/h, bicycle 10 km/h.
 
 ### Voice guidance
 
