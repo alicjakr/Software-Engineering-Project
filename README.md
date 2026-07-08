@@ -118,6 +118,7 @@ produced using the World-Machine Model (Jackson problem-frames) method:
   calculation) and state machine (cloud sign-in) diagrams
 - [`diagrams/activity/`](diagrams/activity) — activity diagrams: the search → route
   calculation → guidance flow, split into three phases
+  
 System dynamics diagrams are in diagrams/system_dynamics and (separated) diagrams/activity.
 
 ## License
